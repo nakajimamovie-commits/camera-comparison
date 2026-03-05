@@ -214,6 +214,7 @@
   <div class="tabs">
     <button class="tab-btn active" onclick="showTab('main')">📋 スペック比較</button>
     <button class="tab-btn" onclick="showTab('sd')">💾 SDカード録画時間</button>
+    <button class="tab-btn" onclick="showTab('guide')">🎥 ゲスト撮影ガイド</button>
   </div>
 
   <!-- ========== TAB 1: スペック比較 ========== -->
@@ -500,6 +501,200 @@
     </div>
 
   </div><!-- /tab-sd -->
+
+  <!-- ========== TAB 3: ゲスト撮影ガイド ========== -->
+  <div id="tab-guide" class="tab-section">
+
+    <div style="max-width:720px; margin:0 auto;">
+
+      <!-- タイトルカード -->
+      <div style="background:var(--header-bg); color:#fff; border-radius:14px; padding:24px 28px; margin-bottom:24px;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; margin-bottom:6px;">🎥 結婚式上映中のゲスト表情撮影 ご案内</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.8;">上映中にスクリーンを見ているゲストの表情を記録するためのカメラ設置方法です。</div>
+      </div>
+
+      <!-- カメラ設置位置図 -->
+      <div style="background:#fff; border-radius:14px; border:1px solid var(--border); padding:24px 28px; margin-bottom:20px; box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+        <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:16px;">📐 カメラ設置位置（図）</div>
+
+        <!-- 会場図SVG -->
+        <!--
+          レイアウト設計:
+          viewBox: 0 0 660 420
+          左スクリーン: x=8, w=24 → 右端=32
+          右スクリーン: x=628, w=24 → 左端=628
+          左カメラ中心: cx=60, cy=64, r=26
+          右カメラ中心: cx=600, cy=64, r=26
+
+          1列目テーブル r=32, cy=168
+            T1: cx=150  矢印: x1=118→x2=78  (長さ40px) 終点78 > 32 ✓
+            T2: cx=260  矢印: x1=228→x2=188 (長さ40px) ✓
+            T3: cx=400  矢印: x1=432→x2=472 (長さ40px) ✓
+            T4: cx=510  矢印: x1=542→x2=582 (長さ40px) 終点582 < 628 ✓
+        -->
+        <svg viewBox="0 0 660 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:660px; display:block; margin:0 auto;">
+          <defs>
+            <marker id="arr-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#e53935"/>
+            </marker>
+            <marker id="arr-blue-r" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#1a7de0"/>
+            </marker>
+            <marker id="arr-blue-l" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#1a7de0"/>
+            </marker>
+          </defs>
+
+          <!-- 背景 -->
+          <rect width="660" height="420" fill="#f8f9fb" rx="10"/>
+
+          <!-- メイン席 -->
+          <rect x="230" y="16" width="200" height="36" rx="6" fill="white" stroke="#999" stroke-width="1.5"/>
+          <text x="330" y="39" text-anchor="middle" font-size="14" fill="#333" font-family="sans-serif">メイン席</text>
+
+          <!-- 左スクリーン: x=8〜32 -->
+          <rect x="8" y="100" width="24" height="200" rx="4" fill="#1a1a2e"/>
+          <text x="20" y="206" text-anchor="middle" font-size="11" fill="white" font-family="sans-serif" transform="rotate(-90,20,206)">スクリーン</text>
+
+          <!-- 右スクリーン: x=628〜652 -->
+          <rect x="628" y="100" width="24" height="200" rx="4" fill="#1a1a2e"/>
+          <text x="640" y="206" text-anchor="middle" font-size="11" fill="white" font-family="sans-serif" transform="rotate(90,640,206)">スクリーン</text>
+
+          <!-- 左カメラ: cx=60 cy=64 r=26 -->
+          <circle cx="60" cy="64" r="26" fill="#e53935"/>
+          <text x="60" y="71" text-anchor="middle" font-size="20" font-family="sans-serif" fill="white">📷</text>
+          <text x="60" y="102" text-anchor="middle" font-size="11" fill="#e53935" font-weight="bold" font-family="sans-serif">カメラ向き</text>
+          <!-- 矢印: 斜め下右 終点(112,106) -->
+          <line x1="80" y1="78" x2="112" y2="106" stroke="#e53935" stroke-width="2.5" marker-end="url(#arr-red)"/>
+
+          <!-- 右カメラ: cx=600 cy=64 r=26 -->
+          <circle cx="600" cy="64" r="26" fill="#e53935"/>
+          <text x="600" y="71" text-anchor="middle" font-size="20" font-family="sans-serif" fill="white">📷</text>
+          <text x="600" y="102" text-anchor="middle" font-size="11" fill="#e53935" font-weight="bold" font-family="sans-serif">カメラ向き</text>
+          <!-- 矢印: 斜め下左 終点(548,106) -->
+          <line x1="580" y1="78" x2="548" y2="106" stroke="#e53935" stroke-width="2.5" marker-end="url(#arr-red)"/>
+
+          <!-- ゲストの目線ラベル -->
+          <text x="330" y="114" text-anchor="middle" font-size="12" fill="#1a7de0" font-weight="bold" font-family="sans-serif">ゲストの目線</text>
+
+          <!-- 1列目 4テーブル r=32 cy=168 矢印長さ=40px -->
+          <!-- T1 cx=150  左向き: x1=118→x2=78 -->
+          <circle cx="150" cy="168" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <line x1="118" y1="168" x2="78" y2="168" stroke="#1a7de0" stroke-width="2.5" marker-end="url(#arr-blue-l)"/>
+
+          <!-- T2 cx=260  左向き: x1=228→x2=188 -->
+          <circle cx="260" cy="168" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <line x1="228" y1="168" x2="188" y2="168" stroke="#1a7de0" stroke-width="2.5" marker-end="url(#arr-blue-l)"/>
+
+          <!-- T3 cx=400  右向き: x1=432→x2=472 -->
+          <circle cx="400" cy="168" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <line x1="432" y1="168" x2="472" y2="168" stroke="#1a7de0" stroke-width="2.5" marker-end="url(#arr-blue-r)"/>
+
+          <!-- T4 cx=510  右向き: x1=542→x2=582 (< 628) -->
+          <circle cx="510" cy="168" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <line x1="542" y1="168" x2="582" y2="168" stroke="#1a7de0" stroke-width="2.5" marker-end="url(#arr-blue-r)"/>
+
+          <!-- 2列目 3テーブル r=32 cy=268 -->
+          <circle cx="205" cy="268" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <circle cx="330" cy="268" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <circle cx="455" cy="268" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+
+          <!-- 3列目 2テーブル r=32 cy=360 -->
+          <circle cx="268" cy="360" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+          <circle cx="392" cy="360" r="32" fill="white" stroke="#ccc" stroke-width="1.5"/>
+
+        </svg>
+      </div>
+
+      <!-- ポイントカード群 -->
+      <div style="display:grid; gap:14px;">
+
+        <!-- 注意：全員は撮れない -->
+        <div style="background:#fff0f0; border-radius:12px; border:1px solid #f5c0c0; padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--weak); margin-bottom:10px;">⚠️ 注意点</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            会場には<strong>スクリーンが左右２面</strong>あるため、テーブルによって見る方向が異なります。<br>
+            そのため、<strong>１台のカメラで全員の表情を撮ることはできません。</strong><br>
+            撮影できるのは、カメラを設置したスクリーン側を向いているゲストのみになります。
+          </div>
+        </div>
+
+        <!-- 三脚の高さ（1番上に移動） -->
+        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--sony-a); margin-bottom:10px;">📏 三脚の高さ</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            三脚の高さは<strong>一番上（最大の高さ）</strong>にしてください。<br>
+            前の人の頭でゲストの顔が隠れにくくなります。
+          </div>
+        </div>
+
+        <!-- カメラ設置位置 -->
+        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--sony-a); margin-bottom:10px;">📍 カメラ設置位置</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            カメラ（三脚）は<strong>スクリーンの横</strong>に設置してください。<br>
+            ゲストがスクリーンを見ている<strong>顔の表情が見える方向</strong>にカメラを向けます。
+          </div>
+        </div>
+
+        <!-- 構図 -->
+        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--sony-a); margin-bottom:10px;">🖼️ 構図</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            スクリーンは非常に明るいため、カメラがスクリーンの光に合わせて明るさを調整します。<br>
+            そのため、スクリーンが画面に入るとゲストの顔が暗く写ることがあります。
+          </div>
+          <div style="margin-top:14px; background:#fff0f0; border-left:4px solid var(--weak); border-radius:0 8px 8px 0; padding:14px 16px;">
+            <div style="font-size:14px; font-weight:700; color:var(--weak); margin-bottom:4px;">⛔ スクリーンを画面に入れないでください</div>
+            <div style="font-size:13px; line-height:1.8; color:var(--text);">ゲストの顔だけが映る構図にしてください。</div>
+          </div>
+        </div>
+
+        <!-- カメラの限界 -->
+        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:10px;">📌 撮影についての補足</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            会場の明るさや距離によっては、<strong>カメラの性能に限界があり、表情がはっきり写らない場合があります。</strong><br>
+            できる限り上記のポイントを守って撮影することで、より良い映像になります。
+          </div>
+        </div>
+
+        <!-- ズーム -->
+        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--sony-a); margin-bottom:10px;">🔍 ズーム</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            広角のままだとスクリーンが映り込みやすいため、<br>
+            <strong>ゲスト席が画面いっぱいになるくらいまで少しズーム</strong>してください。
+          </div>
+        </div>
+
+        <!-- カメラ設定 -->
+        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:var(--sony-a); margin-bottom:10px;">⚙️ カメラ設定</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            カメラの設定は<strong>基本的にすべてオートで問題ありません。</strong>
+          </div>
+        </div>
+
+        <!-- 暗所モード注意 -->
+        <div style="background:#fffbe6; border-radius:12px; border:1px solid #f4c430; padding:20px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:13px; font-weight:700; color:#7a5a00; margin-bottom:10px;">⚠️ 暗所モードについて</div>
+          <div style="font-size:14px; line-height:1.9; color:var(--text);">
+            ゲストの顔をより明るく写すために、カメラには<strong>暗所モード（Low Luxなど）</strong>があります。<br>
+            ただし、暗所モードを入れたまま明るい場所を撮影すると：
+            <ul style="margin:8px 0 8px 20px; color:var(--weak);">
+              <li>動きがブレる</li>
+              <li>映像にざらつき（ノイズ）が出る</li>
+            </ul>
+            ことがあります。<br>
+            そのため<strong>基本は設定を変更せず、オート撮影のまま使用することをおすすめします。</strong>
+          </div>
+        </div>
+
+      </div><!-- /grid -->
+    </div>
+
+  </div><!-- /tab-guide -->
 
 </div><!-- /wrapper -->
 
