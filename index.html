@@ -36,6 +36,7 @@
 
   .wrapper { max-width: 960px; margin: 0 auto; }
 
+  /* Page title */
   .page-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(28px, 5vw, 48px);
@@ -52,6 +53,7 @@
     animation: fadeDown 0.5s ease both 0.05s;
   }
 
+  /* Tab nav */
   .tabs {
     display: flex;
     gap: 8px;
@@ -77,9 +79,11 @@
     font-weight: 500;
   }
 
+  /* Section */
   .tab-section { display: none; }
   .tab-section.active { display: block; animation: fadeUp 0.4s ease both; }
 
+  /* Table wrap */
   .table-wrap {
     overflow-x: auto;
     border-radius: 14px;
@@ -90,6 +94,7 @@
 
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
+  /* Main table header */
   thead th { background: var(--header-bg); color: #fff; padding: 16px 14px; text-align: center; }
   thead th.th-label { text-align: left; padding-left: 20px; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; width: 170px; min-width: 130px; }
   .model-brand { font-size: 10px; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 3px; }
@@ -98,6 +103,7 @@
   .col-b .model-name { color: #ffc84a; }
   .col-c .model-name { color: #6bbfff; }
 
+  /* Body rows */
   tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:nth-child(even):not(.section-header) { background: var(--light-row); }
@@ -117,6 +123,7 @@
   td.row-label { padding: 13px 20px; color: var(--muted); font-size: 13px; vertical-align: middle; white-space: nowrap; }
   td.cell { padding: 13px 14px; text-align: center; vertical-align: middle; font-size: 14px; }
 
+  /* Badges */
   .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }
   .badge-good { background: #d4f5e2; color: var(--good); }
   .badge-mid  { background: #fff0c0; color: var(--mid); }
@@ -137,6 +144,7 @@
   .weight-bar-wrap { display: flex; align-items: center; gap: 8px; justify-content: center; }
   .weight-bar { height: 4px; border-radius: 2px; }
 
+  /* SD card page */
   .sd-note {
     font-size: 13px;
     color: var(--muted);
@@ -172,7 +180,7 @@
   .sd-table td:first-child { text-align: left; color: var(--muted); font-size: 13px; }
   .sd-table td.highlight { font-weight: 500; color: var(--text); }
   .sd-table tr.recommended { background: #fffbe6 !important; }
-  .sd-table tr.recommended td:first-child { color: var(--text); font-weight: 600; }
+  .sd-table tr.recommended td { font-weight: 700; color: var(--text); }
   .rec-badge {
     display: inline-block;
     margin-left: 8px;
@@ -185,6 +193,7 @@
     vertical-align: middle;
   }
 
+  /* Animations */
   @keyframes fadeDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
   @keyframes fadeUp   { from { opacity:0; transform:translateY(14px);  } to { opacity:1; transform:translateY(0); } }
 
@@ -207,70 +216,219 @@
     <button class="tab-btn" onclick="showTab('sd')">💾 SDカード録画時間</button>
   </div>
 
+  <!-- ========== TAB 1: スペック比較 ========== -->
   <div id="tab-main" class="tab-section active">
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
             <th class="th-label"></th>
-            <th class="col-a"><div class="model-brand">Sony</div><div class="model-name">FDR-AX45A</div></th>
-            <th class="col-b"><div class="model-brand">Sony</div><div class="model-name">HDR-CX680</div></th>
-            <th class="col-c"><div class="model-brand">Panasonic</div><div class="model-name">HC-VX992MS</div></th>
+            <th class="col-a">
+              <div class="model-brand">Sony</div>
+              <div class="model-name">FDR-AX45A</div>
+            </th>
+            <th class="col-b">
+              <div class="model-brand">Sony</div>
+              <div class="model-name">HDR-CX680</div>
+            </th>
+            <th class="col-c">
+              <div class="model-brand">Panasonic</div>
+              <div class="model-name">HC-VX992MS</div>
+            </th>
           </tr>
         </thead>
         <tbody>
+
+          <!-- 画質・特徴 -->
           <tr class="section-header"><td colspan="4">画質・特徴</td></tr>
-          <tr><td class="row-label">発売年</td><td class="cell">2022年</td><td class="cell">2017年</td><td class="cell">2019年</td></tr>
-          <tr><td class="row-label">画質</td><td class="cell"><span class="badge badge-blue">4K / HD</span></td><td class="cell"><span class="badge badge-mid">HD</span></td><td class="cell"><span class="badge badge-blue">4K / HD</span></td></tr>
-          <tr><td class="row-label">ウリ・特徴</td><td class="cell" style="font-size:12px;line-height:1.7;">空間光学手ブレ補正<br>+ 4K撮影</td><td class="cell" style="font-size:12px;line-height:1.7;">軽量ボディ<br>+ 30倍ズーム</td><td class="cell" style="font-size:12px;line-height:1.7;">明るいレンズ<br>+ 暗所に強い4K</td></tr>
+          <tr>
+            <td class="row-label">発売年</td>
+            <td class="cell">2022年</td>
+            <td class="cell">2017年</td>
+            <td class="cell">2019年</td>
+          </tr>
+          <tr>
+            <td class="row-label">画質</td>
+            <td class="cell"><span class="badge badge-blue">4K / HD</span></td>
+            <td class="cell"><span class="badge badge-mid">HD</span></td>
+            <td class="cell"><span class="badge badge-blue">4K / HD</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">ウリ・特徴</td>
+            <td class="cell" style="font-size:12px; line-height:1.7;">空間光学手ブレ補正<br>+ 4K撮影</td>
+            <td class="cell" style="font-size:12px; line-height:1.7;">軽量ボディ<br>+ 30倍ズーム</td>
+            <td class="cell" style="font-size:12px; line-height:1.7;">明るいレンズ<br>+ 4K撮影</td>
+          </tr>
 
+          <!-- 暗所性能 -->
           <tr class="section-header"><td colspan="4">暗所性能・明るさ</td></tr>
-          <tr><td class="row-label">暗所性能</td><td class="cell"><span class="badge badge-mid">明るめ</span></td><td class="cell"><span class="badge badge-weak">普通</span></td><td class="cell"><span class="badge badge-good">強い</span></td></tr>
-          <tr><td class="row-label">最低照度</td><td class="cell" style="color:var(--mid);">1.8〜9 lux</td><td class="cell" style="color:var(--weak);">3〜6 lux</td><td class="cell" style="color:var(--good);">1〜2 lux</td></tr>
+          <tr>
+            <td class="row-label">暗所性能</td>
+            <td class="cell"><span class="badge badge-good">良好</span></td>
+            <td class="cell"><span class="badge badge-weak">やや弱い</span></td>
+            <td class="cell"><span class="badge badge-mid">やや明るめ</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">暗所の特徴</td>
+            <td class="cell" style="font-size:12px; line-height:1.7; color:var(--good);">ノイズ少なく<br>色再現も良好</td>
+            <td class="cell" style="font-size:12px; line-height:1.7; color:var(--weak);">ノイズが多く<br>暗所は不向き</td>
+            <td class="cell" style="font-size:12px; line-height:1.7; color:var(--mid);">明るめだが<br>カラーノイズあり</td>
+          </tr>
+          <tr>
+            <td class="row-label">最低照度</td>
+            <td class="cell" style="color:var(--good);">1.8〜9 lux</td>
+            <td class="cell" style="color:var(--weak);">3〜6 lux</td>
+            <td class="cell" style="color:var(--mid);">1〜2 lux</td>
+          </tr>
 
+          <!-- ズーム・手ブレ -->
           <tr class="section-header"><td colspan="4">ズーム・手ブレ補正</td></tr>
-          <tr><td class="row-label">手ブレ補正</td>
-            <td class="cell"><div class="stars"><span class="star-fill">★★★★★</span></div><div style="font-size:11px;color:var(--muted);margin-top:3px;">非常に強い</div></td>
-            <td class="cell"><div class="stars"><span class="star-fill">★★★★</span><span class="star-empty">★</span></div><div style="font-size:11px;color:var(--muted);margin-top:3px;">強い</div></td>
-            <td class="cell"><div class="stars"><span class="star-fill">★★★</span><span class="star-empty">★★</span></div><div style="font-size:11px;color:var(--muted);margin-top:3px;">普通</div></td>
+          <tr>
+            <td class="row-label">手ブレ補正</td>
+            <td class="cell">
+              <div class="stars"><span class="star-fill">★★★★★</span></div>
+              <div style="font-size:11px; color:var(--muted); margin-top:3px;">非常に強い</div>
+            </td>
+            <td class="cell">
+              <div class="stars"><span class="star-fill">★★★★</span><span class="star-empty">★</span></div>
+              <div style="font-size:11px; color:var(--muted); margin-top:3px;">強い</div>
+            </td>
+            <td class="cell">
+              <div class="stars"><span class="star-fill">★★★</span><span class="star-empty">★★</span></div>
+              <div style="font-size:11px; color:var(--muted); margin-top:3px;">普通</div>
+            </td>
           </tr>
-          <tr><td class="row-label">光学ズーム</td><td class="cell"><span class="big-num" style="color:var(--sony-a);">20</span><span style="font-size:11px;color:var(--muted);">倍</span></td><td class="cell"><span class="big-num" style="color:var(--sony-b);">30</span><span style="font-size:11px;color:var(--muted);">倍</span></td><td class="cell"><span class="big-num" style="color:var(--panasonic);">20</span><span style="font-size:11px;color:var(--muted);">倍</span></td></tr>
-          <tr><td class="row-label">画角（広角）</td><td class="cell"><span style="color:var(--good);">26.8mm</span><div style="font-size:11px;color:var(--muted);">広い</div></td><td class="cell"><span style="color:var(--good);">26.8mm</span><div style="font-size:11px;color:var(--muted);">広い</div></td><td class="cell"><span style="color:var(--weak);">30.8mm</span><div style="font-size:11px;color:var(--muted);">やや狭い</div></td></tr>
+          <tr>
+            <td class="row-label">光学ズーム</td>
+            <td class="cell"><span class="big-num" style="color:var(--sony-a);">20</span><span style="font-size:11px;color:var(--muted);">倍</span></td>
+            <td class="cell"><span class="big-num" style="color:var(--sony-b);">30</span><span style="font-size:11px;color:var(--muted);">倍</span></td>
+            <td class="cell"><span class="big-num" style="color:var(--panasonic);">20</span><span style="font-size:11px;color:var(--muted);">倍</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">画角（広角）</td>
+            <td class="cell"><span style="color:var(--good);">26.8mm</span><div style="font-size:11px;color:var(--muted);">広い</div></td>
+            <td class="cell"><span style="color:var(--good);">26.8mm</span><div style="font-size:11px;color:var(--muted);">広い</div></td>
+            <td class="cell"><span style="color:var(--weak);">30.8mm</span><div style="font-size:11px;color:var(--muted);">やや狭い</div></td>
+          </tr>
 
+          <!-- バッテリー -->
           <tr class="section-header"><td colspan="4">バッテリー・録画時間</td></tr>
-          <tr><td class="row-label">付属バッテリー</td><td class="cell" style="font-size:13px;">NP-FV70A</td><td class="cell" style="font-size:13px;">NP-FV50</td><td class="cell" style="font-size:13px;">VW-VBT190</td></tr>
-          <tr><td class="row-label">実用撮影時間</td><td class="cell">約80〜120分</td><td class="cell">約80〜120分</td><td class="cell">約60〜90分</td></tr>
-          <tr><td class="row-label">発熱停止</td><td class="cell"><span class="badge badge-mid">強い</span></td><td class="cell"><span class="badge badge-mid">強い</span></td><td class="cell"><span class="badge badge-good">普通</span></td></tr>
-
-          <tr class="section-header"><td colspan="4">予備バッテリー</td></tr>
-          <tr><td class="row-label">型番</td><td class="cell" style="font-size:13px;font-weight:500;color:var(--sony-a);">NP-FV100A</td><td class="cell" style="font-size:13px;font-weight:500;color:var(--sony-b);">NP-FV100A</td><td class="cell" style="font-size:13px;font-weight:500;color:var(--panasonic);">VW-VBT190<br><span style="font-size:11px;font-weight:400;color:var(--muted);">付属と同型が予備</span></td></tr>
-          <tr><td class="row-label">実用撮影時間</td><td class="cell">約100〜150分</td><td class="cell">約100〜150分</td><td class="cell">約60〜90分</td></tr>
-
-          <tr class="section-header"><td colspan="4">携帯性・価格</td></tr>
-          <tr><td class="row-label">重量</td>
-            <td class="cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:44px;background:var(--sony-a);"></div><span>510g</span></div></td>
-            <td class="cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:24px;background:var(--sony-b);"></div><span>305g</span></div></td>
-            <td class="cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:33px;background:var(--panasonic);"></div><span>398g</span></div></td>
+          <tr>
+            <td class="row-label">付属バッテリー</td>
+            <td class="cell" style="font-size:13px;">NP-FV70A</td>
+            <td class="cell" style="font-size:13px;">NP-FV50</td>
+            <td class="cell" style="font-size:13px;">VW-VBT190</td>
           </tr>
-          <tr><td class="row-label">記録メディア</td><td class="cell" style="color:var(--muted);font-size:13px;">SDカード</td><td class="cell" style="color:var(--muted);font-size:13px;">SDカード</td><td class="cell" style="color:var(--muted);font-size:13px;">SDカード</td></tr>
-          <tr><td class="row-label">レンタル価格<br><span style="font-size:11px;">（3泊4日）</span></td><td class="cell"><div class="price price-a">¥10,300〜</div></td><td class="cell"><div class="price price-b">¥8,500〜</div></td><td class="cell"><div class="price price-c">¥10,000〜</div></td></tr>
+          <tr>
+            <td class="row-label">実用撮影時間</td>
+            <td class="cell">約80〜120分</td>
+            <td class="cell">約80〜120分</td>
+            <td class="cell">約60〜90分</td>
+          </tr>
+          <tr>
+            <td class="row-label">発熱停止</td>
+            <td class="cell"><span class="badge badge-mid">強い</span></td>
+            <td class="cell"><span class="badge badge-mid">強い</span></td>
+            <td class="cell"><span class="badge badge-good">普通</span></td>
+          </tr>
 
+          <!-- 予備バッテリー -->
+          <tr class="section-header"><td colspan="4">予備バッテリー</td></tr>
+          <tr>
+            <td class="row-label">型番</td>
+            <td class="cell" style="font-size:13px; font-weight:500; color:var(--sony-a);">NP-FV100A</td>
+            <td class="cell" style="font-size:13px; font-weight:500; color:var(--sony-b);">NP-FV100A</td>
+            <td class="cell" style="font-size:13px; font-weight:500; color:var(--panasonic);">VW-VBT190<br><span style="font-size:11px; font-weight:400; color:var(--muted);">付属と同型が予備</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">実用撮影時間</td>
+            <td class="cell">約100〜150分</td>
+            <td class="cell">約100〜150分</td>
+            <td class="cell">約60〜90分</td>
+          </tr>
+
+          <!-- 携帯性・価格 -->
+          <tr class="section-header"><td colspan="4">携帯性・価格</td></tr>
+          <tr>
+            <td class="row-label">重量</td>
+            <td class="cell">
+              <div class="weight-bar-wrap">
+                <div class="weight-bar" style="width:44px; background:var(--sony-a);"></div>
+                <span>510g</span>
+              </div>
+            </td>
+            <td class="cell">
+              <div class="weight-bar-wrap">
+                <div class="weight-bar" style="width:24px; background:var(--sony-b);"></div>
+                <span>305g</span>
+              </div>
+            </td>
+            <td class="cell">
+              <div class="weight-bar-wrap">
+                <div class="weight-bar" style="width:33px; background:var(--panasonic);"></div>
+                <span>398g</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="row-label">記録メディア</td>
+            <td class="cell" style="color:var(--muted); font-size:13px;">SDカード</td>
+            <td class="cell" style="color:var(--muted); font-size:13px;">SDカード</td>
+            <td class="cell" style="color:var(--muted); font-size:13px;">SDカード</td>
+          </tr>
+          <tr>
+            <td class="row-label">レンタル価格<br><span style="font-size:11px;">（3泊4日）</span></td>
+            <td class="cell"><div class="price price-a">¥10,300〜</div></td>
+            <td class="cell"><div class="price price-b">¥8,500〜</div></td>
+            <td class="cell"><div class="price price-c">¥10,000〜</div></td>
+          </tr>
+
+          <!-- 付属三脚 -->
           <tr class="section-header"><td colspan="4">付属三脚</td></tr>
-          <tr><td class="row-label">型番</td><td class="cell" style="font-size:13px;font-weight:600;color:var(--sony-a);">GX6400 VIDEO</td><td class="cell" style="font-size:13px;font-weight:600;color:var(--sony-b);">EX-440</td><td class="cell" style="font-size:13px;font-weight:600;color:var(--panasonic);">GX6400 VIDEO</td></tr>
-          <tr><td class="row-label">三脚タイプ</td><td class="cell">ビデオ三脚</td><td class="cell">フォト三脚</td><td class="cell">ビデオ三脚</td></tr>
-          <tr><td class="row-label">最大高さ</td><td class="cell">約158cm</td><td class="cell">約153cm</td><td class="cell">約158cm</td></tr>
-          <tr><td class="row-label">三脚重量</td><td class="cell">約1.3〜1.5kg</td><td class="cell">約1.18kg</td><td class="cell">約1.3〜1.5kg</td></tr>
-          <tr><td class="row-label">耐荷重</td><td class="cell">約1.5kg</td><td class="cell">約1kg</td><td class="cell">約1.5kg</td></tr>
+          <tr>
+            <td class="row-label">型番</td>
+            <td class="cell" style="font-size:13px; font-weight:600; color:var(--sony-a);">GX6400 VIDEO</td>
+            <td class="cell" style="font-size:13px; font-weight:600; color:var(--sony-b);">EX-440</td>
+            <td class="cell" style="font-size:13px; font-weight:600; color:var(--panasonic);">GX6400 VIDEO</td>
+          </tr>
+          <tr>
+            <td class="row-label">三脚タイプ</td>
+            <td class="cell">ビデオ三脚</td>
+            <td class="cell">フォト三脚</td>
+            <td class="cell">ビデオ三脚</td>
+          </tr>
+          <tr>
+            <td class="row-label">最大高さ</td>
+            <td class="cell">約158cm</td>
+            <td class="cell">約153cm</td>
+            <td class="cell">約158cm</td>
+          </tr>
+          <tr>
+            <td class="row-label">三脚重量</td>
+            <td class="cell">約1.3〜1.5kg</td>
+            <td class="cell">約1.18kg</td>
+            <td class="cell">約1.3〜1.5kg</td>
+          </tr>
+          <tr>
+            <td class="row-label">耐荷重</td>
+            <td class="cell">約1.5kg</td>
+            <td class="cell">約1kg</td>
+            <td class="cell">約1.5kg</td>
+          </tr>
+
         </tbody>
       </table>
     </div>
   </div>
 
+  <!-- ========== TAB 2: SDカード録画時間 ========== -->
   <div id="tab-sd" class="tab-section">
+
     <div class="sd-note">
       💡 表の <a href="https://amzn.asia/d/0a58Nwvg" target="_blank">64GB ↗</a> / <a href="https://amzn.asia/d/05X1Tfza" target="_blank">128GB ↗</a> / <a href="https://amzn.asia/d/0dIUwGig" target="_blank">256GB ↗</a> をクリックするとAmazon購入ページへ移動できます。
     </div>
 
+    <!-- Sony FDR-AX45A -->
     <div class="sd-block">
       <div class="sd-block-title" style="color:var(--sony-a);">Sony FDR-AX45A</div>
       <div class="sd-table-wrap">
@@ -294,6 +452,7 @@
       </div>
     </div>
 
+    <!-- Sony HDR-CX680 -->
     <div class="sd-block">
       <div class="sd-block-title" style="color:var(--sony-b);">Sony HDR-CX680</div>
       <div class="sd-table-wrap">
@@ -316,6 +475,7 @@
       </div>
     </div>
 
+    <!-- Panasonic HC-VX992MS -->
     <div class="sd-block">
       <div class="sd-block-title" style="color:var(--panasonic);">Panasonic HC-VX992MS</div>
       <div class="sd-table-wrap">
@@ -339,9 +499,9 @@
       </div>
     </div>
 
-  </div>
+  </div><!-- /tab-sd -->
 
-</div>
+</div><!-- /wrapper -->
 
 <script>
 function showTab(id) {
